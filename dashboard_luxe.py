@@ -203,7 +203,7 @@ def access_screen():
         <p>Turn sales, customer behavior and predictive analytics into actionable business insights. All in one intelligence workspace.</p>
         <div class="access-chart"><div class="access-chart-head"><div><span>Historical net revenue</span><strong>£19.01M</strong></div><small>2009–2011</small></div>
         <svg viewBox="0 0 380 74" width="100%" height="74" role="img" aria-label="Illustrative trend, not actual time series"><defs><linearGradient id="authFill" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#8de5c6" stop-opacity=".27"/><stop offset="100%" stop-color="#8de5c6" stop-opacity="0"/></linearGradient></defs><path d="M0 18H380M0 38H380M0 58H380" stroke="#c1e8e7" stroke-opacity=".13" stroke-dasharray="3 6"/><path d="M0 48L26 53L52 39L78 45L105 35L131 41L157 26L184 35L211 19L237 26L264 8L290 17L316 11L342 20L380 4V74H0Z" fill="url(#authFill)"/><path d="M0 48L26 53L52 39L78 45L105 35L131 41L157 26L184 35L211 19L237 26L264 8L290 17L316 11L342 20L380 4" fill="none" stroke="#99e9ce" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/></svg></div>
-        <div class="access-metrics"><div><b>1.03M+</b><small>Historical transaction lines</small></div><div><b>15</b><small>Analytics modules</small></div></div>
+        <div class="access-metrics"><div><b>1.03M+</b><small>Historical transaction lines</small></div><div><b>16</b><small>Analytics modules</small></div></div>
         <div class="access-foot">Historical portfolio dataset. Trend graphic is illustrative.</div></div>''', unsafe_allow_html=True)
     with right:
         with st.container(border=True, key='access_card'):
@@ -278,12 +278,12 @@ PAGES = {
     'WORKSPACE': ['Overview', 'Sales analytics', 'Products', 'Customers'],
     'PREDICTIVE INTELLIGENCE': ['Segmentation', 'Churn risk', 'Forecast', 'Market basket', 'Customer value', 'Anomaly detection', 'Explainable AI'],
     'PLANNING & OPERATIONS': ['Business insights', 'What-if simulator', 'Data workspace'],
-    'RESOURCES': ['About RetailIQ']
+    'RESOURCES': ['Snowflake intelligence', 'About RetailIQ']
 }
 ICONS = {'Overview':'◈', 'Sales analytics':'↗', 'Products':'▦', 'Customers':'◎',
          'Segmentation':'◉', 'Churn risk':'⚑', 'Forecast':'⌁', 'Market basket':'⊞',
          'Customer value':'◇', 'Anomaly detection':'ϟ', 'Explainable AI':'✳',
-         'Business insights':'✦', 'What-if simulator':'≋', 'Data workspace':'▤', 'About RetailIQ':'ⓘ'}
+         'Business insights':'✦', 'What-if simulator':'≋', 'Data workspace':'▤', 'Snowflake intelligence':'❄', 'About RetailIQ':'ⓘ'}
 if 'active_page' not in st.session_state:
     st.session_state.active_page = 'Overview'
 
@@ -508,15 +508,18 @@ with left:
 with middle:
     st.selectbox('Find a module', ['Find a module…'] + [name for names in PAGES.values() for name in names], key='module_jump', label_visibility='collapsed', on_change=jump_to_module)
 with right:
-    st.markdown(f'<div class="environment"><i></i>{escape(active)} · historical</div>', unsafe_allow_html=True)
+    st.markdown(f'<div class="environment"><i></i>{escape('Snowflake reports' if page == 'Snowflake intelligence' else active)} · historical</div>', unsafe_allow_html=True)
 start, end = df.invoice_date.min().date(), df.invoice_date.max().date()
-with st.expander('Filters  ·  market and reporting period', expanded=False):
-    a,b = st.columns([1,1])
-    with a:
-        countries = st.multiselect('Markets', sorted(df.country.dropna().unique()), placeholder='All markets', key='market_filter')
-    with b:
-        dates = st.date_input('Date range', (start,end), min_value=start,max_value=end,key='date_filter')
-    st.caption('Transaction filters apply to descriptive analytics and scenarios, not saved historical model outputs.')
+if page == 'Snowflake intelligence':
+    countries, dates = [], (start, end)
+else:
+    with st.expander('Filters  ·  market and reporting period', expanded=False):
+        a,b = st.columns([1,1])
+        with a:
+            countries = st.multiselect('Markets', sorted(df.country.dropna().unique()), placeholder='All markets', key='market_filter')
+        with b:
+            dates = st.date_input('Date range', (start,end), min_value=start,max_value=end,key='date_filter')
+        st.caption('Transaction filters apply to descriptive analytics and scenarios, not saved historical model outputs.')
 
 if len(dates) != 2:
     st.info('Select both dates.')
@@ -862,6 +865,75 @@ elif page == 'Explainable AI':
         chart(px.bar(local,x='contribution',y='feature',color=local.contribution.ge(0).map({True:'Increases value',False:'Decreases value'}),orientation='h',title='Individual prediction contributions'))
     except ImportError: st.warning('Install shap to enable this page.')
     except Exception as exc: st.warning(f'Explanation unavailable: {type(exc).__name__}')
+elif page == 'Snowflake intelligence':
+    from retailiq import snowflake_cloud
+    st.markdown('<div class="product-mast"><div><small style="color:#a9efd9;letter-spacing:2px">CLOUD DATA WAREHOUSE</small><h1>Snowflake intelligence</h1><p>Historical warehouse analytics · Read-only SQL · Bronze, Silver &amp; Gold</p></div><div class="mast-date"><small>COMPUTE</small><b>RETAIL_WH</b><span>X-Small warehouse</span></div></div>', unsafe_allow_html=True)
+    st.caption('Full historical warehouse scope (2009–2011). The dashboard transaction filters do not apply here.')
+    config = {}
+    try:
+        config = st.secrets.get('snowflake_analytics', {})
+    except Exception:
+        pass
+    owner_email = str(config.get('owner_email', '')).strip().casefold()
+    is_owner = bool(owner_email and not current_user.get('guest') and
+                    str(current_user.get('email', '')).strip().casefold() == owner_email)
+    configured = all(config.get(k) for k in ('account','private_key_b64','passphrase'))
+    if is_owner and configured:
+        st.caption('Owner-only live queries. Each request can consume Snowflake trial credits.')
+        if st.button('Query Snowflake now', key='sf_query', type='primary'):
+            st.session_state.pop('sf_live_result', None)
+            try:
+                with st.spinner('Querying the read-only Snowflake views…'):
+                    st.session_state['sf_live_result'] = snowflake_cloud.fetch_from_config(config)
+            except Exception:
+                st.warning('Snowflake connection unavailable. Showing the saved historical snapshot if present.')
+        if st.button('Use saved snapshot', key='sf_saved'):
+            st.session_state.pop('sf_live_result', None)
+    payload = st.session_state.get('sf_live_result') if is_owner and configured else None
+    live = payload is not None
+    if not live:
+        try:
+            payload = snowflake_cloud.read_snapshot()
+        except (OSError, ValueError, KeyError, TypeError):
+            payload = None
+    if payload is None:
+        st.info('No warehouse snapshot is available yet. Export aggregate query results from the local Python connector and add the snapshot to GitHub. All other analytics modules remain available.')
+    else:
+        st.markdown(f'<div class="page-meta"><span>{"Live Snowflake query result" if live else "Saved Snowflake query snapshot"}</span><span>Query executed: {escape(str(payload.get("queried_at", "Unknown")))}</span></div>', unsafe_allow_html=True)
+        monthly = pd.DataFrame(payload['tables']['monthly'])
+        markets = pd.DataFrame(payload['tables']['markets'])
+        products = pd.DataFrame(payload['tables']['products'])
+        segments = pd.DataFrame(payload['tables']['segments'])
+        if not all(not frame.empty for frame in (monthly, markets, products, segments)):
+            st.warning('The warehouse returned incomplete or empty analytics. Check the underlying views.')
+        else:
+            monthly['sales_month'] = pd.to_datetime(monthly['sales_month'])
+            for frame in (monthly, markets, products, segments):
+                frame['revenue'] = pd.to_numeric(frame['revenue'])
+            segments['customers'] = pd.to_numeric(segments['customers'])
+            gross = monthly.revenue.sum()
+            lead = markets.iloc[0]
+            a,b,c,d = st.columns(4)
+            with a: kpi('Net revenue',compact_number(gross,'£'),'Snowflake monthly revenue','£',accent,monthly.revenue)
+            with b: kpi('Markets',f'{len(markets):,}','Country performance view','◎','#587aa6')
+            with c: kpi('RFM customers',f'{int(segments.customers.sum()):,}','Positive-spend customer cohort','◉',accent)
+            with d: kpi('Leading market',f'{float(lead.revenue_share):.1f}%',str(lead.country),'↗','#c58a4c')
+            section('Warehouse performance','SQL analytical views')
+            a,b=st.columns([1.5,1])
+            with a: chart(px.area(monthly,x='sales_month',y='revenue',title='Snowflake monthly net revenue',labels={'sales_month':'Month','revenue':'Revenue (GBP)'}),360)
+            with b: chart(px.bar(markets.head(10).sort_values('revenue'),x='revenue',y='country',orientation='h',title='Top 10 markets',labels={'country':'','revenue':'Revenue (GBP)'}),360)
+            a,b=st.columns(2)
+            with a: chart(px.bar(products.head(10).sort_values('revenue'),x='revenue',y='stock_code',orientation='h',hover_data=['description'],title='Top product codes',labels={'revenue':'Revenue (GBP)','stock_code':'Product'}),380)
+            with b: chart(px.pie(segments,names='customer_segment',values='customers',hole=.58,title='SQL RFM segmentation'),380)
+            st.caption('December 2011 is a partial month. RFM groups are SQL quintile segments, separate from the K-Means model.')
+            section('Explore SQL results','Aggregate-only exports')
+            for tab, frame, name in zip(st.tabs(['Monthly revenue','Markets','Products','Customer segments']),[monthly,markets,products,segments],['sf_monthly','sf_markets','sf_products','sf_segments']):
+                with tab: table(frame,name)
+    section('Cloud data architecture','Medallion + dimensional modelling')
+    for col, item in zip(st.columns(3), [('BRONZE','TRANSACTIONS','Semi-structured Parquet ingestion'),('SILVER','TRANSACTIONS_CLEAN','Typed and validated transaction records'),('GOLD','FACT_SALES + 4 dimensions','Star schema and analytical views')]):
+        with col: brief(*item)
+    st.caption('RETAILIQ_DB.ANALYTICS · RETAILIQ_READER · RSA key-pair authentication. This is a historical portfolio dataset, not live retail transactions.')
+
 elif page == 'About RetailIQ':
     hero('Built for better retail decisions.','A data science and analytics portfolio project by N. Lalu Prasad.')
     st.markdown('RetailIQ AI brings together historical transaction analytics, customer intelligence, machine learning and decision support in one workspace.')
@@ -870,7 +942,7 @@ elif page == 'About RetailIQ':
     b.metric('Known customers',f'{df.customer_id.nunique():,}')
     c.metric('Markets',f'{df.country.nunique():,}')
     section('System architecture','End-to-end pipeline')
-    stages = [('01 / INGEST','Retail transactions','Python · Pandas · ETL'),('02 / STORE','Data warehouse','PostgreSQL · local Parquet snapshot'),('03 / MODEL','Predictive intelligence','Scikit-learn · Apriori · SHAP'),('04 / SERVE','Decision workspace','Streamlit · Plotly')]
+    stages = [('01 / INGEST','Retail transactions','Python · Pandas · ETL'),('02 / STORE','Data warehouse','PostgreSQL · Snowflake · Parquet snapshot'),('03 / MODEL','Predictive intelligence','Scikit-learn · Apriori · SHAP'),('04 / SERVE','Decision workspace','Streamlit · Plotly')]
     for col, item in zip(st.columns(4),stages):
         with col: brief(*item)
     section('Model methodology')

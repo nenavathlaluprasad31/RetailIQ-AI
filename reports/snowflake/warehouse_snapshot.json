@@ -1,0 +1,542 @@
+{
+  "source": "Snowflake",
+  "queried_at": "2026-11-18T17:25:26+00:00",
+  "tables": {
+    "monthly": [
+      {
+        "sales_month": "2009-12-01",
+        "revenue": 796648.5,
+        "total_orders": 1839,
+        "growth_percent": null
+      },
+      {
+        "sales_month": "2010-01-01",
+        "revenue": 622479.5,
+        "total_orders": 1205,
+        "growth_percent": -21.86
+      },
+      {
+        "sales_month": "2010-02-01",
+        "revenue": 530518.23,
+        "total_orders": 1281,
+        "growth_percent": -14.77
+      },
+      {
+        "sales_month": "2010-03-01",
+        "revenue": 763247.24,
+        "total_orders": 1770,
+        "growth_percent": 43.87
+      },
+      {
+        "sales_month": "2010-04-01",
+        "revenue": 641521.05,
+        "total_orders": 1512,
+        "growth_percent": -15.95
+      },
+      {
+        "sales_month": "2010-05-01",
+        "revenue": 613270.72,
+        "total_orders": 1642,
+        "growth_percent": -4.4
+      },
+      {
+        "sales_month": "2010-06-01",
+        "revenue": 677073.87,
+        "total_orders": 1719,
+        "growth_percent": 10.4
+      },
+      {
+        "sales_month": "2010-07-01",
+        "revenue": 617365.48,
+        "total_orders": 1584,
+        "growth_percent": -8.82
+      },
+      {
+        "sales_month": "2010-08-01",
+        "revenue": 654774.39,
+        "total_orders": 1511,
+        "growth_percent": 6.06
+      },
+      {
+        "sales_month": "2010-09-01",
+        "revenue": 851105.96,
+        "total_orders": 1911,
+        "growth_percent": 29.98
+      },
+      {
+        "sales_month": "2010-10-01",
+        "revenue": 1080611.48,
+        "total_orders": 2370,
+        "growth_percent": 26.97
+      },
+      {
+        "sales_month": "2010-11-01",
+        "revenue": 1416697.2,
+        "total_orders": 2868,
+        "growth_percent": 31.1
+      },
+      {
+        "sales_month": "2010-12-01",
+        "revenue": 746723.61,
+        "total_orders": 1629,
+        "growth_percent": -47.29
+      },
+      {
+        "sales_month": "2011-01-01",
+        "revenue": 558448.56,
+        "total_orders": 1120,
+        "growth_percent": -25.21
+      },
+      {
+        "sales_month": "2011-02-01",
+        "revenue": 497026.41,
+        "total_orders": 1126,
+        "growth_percent": -11
+      },
+      {
+        "sales_month": "2011-03-01",
+        "revenue": 682013.98,
+        "total_orders": 1531,
+        "growth_percent": 37.22
+      },
+      {
+        "sales_month": "2011-04-01",
+        "revenue": 492367.84,
+        "total_orders": 1318,
+        "growth_percent": -27.81
+      },
+      {
+        "sales_month": "2011-05-01",
+        "revenue": 722094.1,
+        "total_orders": 1731,
+        "growth_percent": 46.66
+      },
+      {
+        "sales_month": "2011-06-01",
+        "revenue": 689977.23,
+        "total_orders": 1576,
+        "growth_percent": -4.45
+      },
+      {
+        "sales_month": "2011-07-01",
+        "revenue": 680156.99,
+        "total_orders": 1540,
+        "growth_percent": -1.42
+      },
+      {
+        "sales_month": "2011-08-01",
+        "revenue": 703510.58,
+        "total_orders": 1407,
+        "growth_percent": 3.43
+      },
+      {
+        "sales_month": "2011-09-01",
+        "revenue": 1017596.68,
+        "total_orders": 1896,
+        "growth_percent": 44.65
+      },
+      {
+        "sales_month": "2011-10-01",
+        "revenue": 1069368.23,
+        "total_orders": 2129,
+        "growth_percent": 5.09
+      },
+      {
+        "sales_month": "2011-11-01",
+        "revenue": 1456145.8,
+        "total_orders": 2884,
+        "growth_percent": 36.17
+      },
+      {
+        "sales_month": "2011-12-01",
+        "revenue": 432719.06,
+        "total_orders": 839,
+        "growth_percent": -70.28
+      }
+    ],
+    "markets": [
+      {
+        "country": "United Kingdom",
+        "revenue": 16143989.34,
+        "total_orders": 38395,
+        "revenue_share": 84.91
+      },
+      {
+        "country": "EIRE",
+        "revenue": 609953.78,
+        "total_orders": 626,
+        "revenue_share": 3.21
+      },
+      {
+        "country": "Netherlands",
+        "revenue": 548330.7,
+        "total_orders": 229,
+        "revenue_share": 2.88
+      },
+      {
+        "country": "Germany",
+        "revenue": 411959.16,
+        "total_orders": 789,
+        "revenue_share": 2.17
+      },
+      {
+        "country": "France",
+        "revenue": 321733.39,
+        "total_orders": 622,
+        "revenue_share": 1.69
+      },
+      {
+        "country": "Australia",
+        "revenue": 166444.42,
+        "total_orders": 95,
+        "revenue_share": 0.88
+      },
+      {
+        "country": "Switzerland",
+        "revenue": 99403.06,
+        "total_orders": 93,
+        "revenue_share": 0.52
+      },
+      {
+        "country": "Spain",
+        "revenue": 91013.44,
+        "total_orders": 154,
+        "revenue_share": 0.48
+      },
+      {
+        "country": "Sweden",
+        "revenue": 87775.52,
+        "total_orders": 105,
+        "revenue_share": 0.46
+      },
+      {
+        "country": "Denmark",
+        "revenue": 64459.59,
+        "total_orders": 43,
+        "revenue_share": 0.34
+      },
+      {
+        "country": "Belgium",
+        "revenue": 63208.89,
+        "total_orders": 149,
+        "revenue_share": 0.33
+      },
+      {
+        "country": "Portugal",
+        "revenue": 51403.68,
+        "total_orders": 95,
+        "revenue_share": 0.27
+      },
+      {
+        "country": "Channel Islands",
+        "revenue": 41080.18,
+        "total_orders": 55,
+        "revenue_share": 0.22
+      },
+      {
+        "country": "Japan",
+        "revenue": 39662.1,
+        "total_orders": 33,
+        "revenue_share": 0.21
+      },
+      {
+        "country": "Norway",
+        "revenue": 35455.91,
+        "total_orders": 45,
+        "revenue_share": 0.19
+      },
+      {
+        "country": "Italy",
+        "revenue": 30254.1,
+        "total_orders": 65,
+        "revenue_share": 0.16
+      },
+      {
+        "country": "Finland",
+        "revenue": 29514.45,
+        "total_orders": 57,
+        "revenue_share": 0.16
+      },
+      {
+        "country": "Cyprus",
+        "revenue": 24032.56,
+        "total_orders": 37,
+        "revenue_share": 0.13
+      },
+      {
+        "country": "Austria",
+        "revenue": 23177.6,
+        "total_orders": 45,
+        "revenue_share": 0.12
+      },
+      {
+        "country": "Greece",
+        "revenue": 18995.49,
+        "total_orders": 18,
+        "revenue_share": 0.1
+      },
+      {
+        "country": "Hong Kong",
+        "revenue": 13830.5,
+        "total_orders": 15,
+        "revenue_share": 0.07
+      },
+      {
+        "country": "Singapore",
+        "revenue": 13158.16,
+        "total_orders": 11,
+        "revenue_share": 0.07
+      },
+      {
+        "country": "Israel",
+        "revenue": 11101.37,
+        "total_orders": 10,
+        "revenue_share": 0.06
+      },
+      {
+        "country": "Poland",
+        "revenue": 10279.93,
+        "total_orders": 28,
+        "revenue_share": 0.05
+      },
+      {
+        "country": "United Arab Emirates",
+        "revenue": 9948.65,
+        "total_orders": 16,
+        "revenue_share": 0.05
+      },
+      {
+        "country": "Unspecified",
+        "revenue": 9678.47,
+        "total_orders": 24,
+        "revenue_share": 0.05
+      },
+      {
+        "country": "USA",
+        "revenue": 6286.54,
+        "total_orders": 20,
+        "revenue_share": 0.03
+      },
+      {
+        "country": "Malta",
+        "revenue": 5192.22,
+        "total_orders": 9,
+        "revenue_share": 0.03
+      },
+      {
+        "country": "Iceland",
+        "revenue": 4921.53,
+        "total_orders": 8,
+        "revenue_share": 0.03
+      },
+      {
+        "country": "Lithuania",
+        "revenue": 4892.68,
+        "total_orders": 6,
+        "revenue_share": 0.03
+      },
+      {
+        "country": "Canada",
+        "revenue": 4883.04,
+        "total_orders": 8,
+        "revenue_share": 0.03
+      },
+      {
+        "country": "RSA",
+        "revenue": 3369.03,
+        "total_orders": 4,
+        "revenue_share": 0.02
+      },
+      {
+        "country": "Thailand",
+        "revenue": 3070.54,
+        "total_orders": 2,
+        "revenue_share": 0.02
+      },
+      {
+        "country": "Bahrain",
+        "revenue": 2861.55,
+        "total_orders": 10,
+        "revenue_share": 0.02
+      },
+      {
+        "country": "Lebanon",
+        "revenue": 1865.91,
+        "total_orders": 2,
+        "revenue_share": 0.01
+      },
+      {
+        "country": "Brazil",
+        "revenue": 1411.87,
+        "total_orders": 2,
+        "revenue_share": 0.01
+      },
+      {
+        "country": "European Community",
+        "revenue": 1291.75,
+        "total_orders": 4,
+        "revenue_share": 0.01
+      },
+      {
+        "country": "Bermuda",
+        "revenue": 1253.14,
+        "total_orders": 1,
+        "revenue_share": 0.01
+      },
+      {
+        "country": "Korea",
+        "revenue": 949.82,
+        "total_orders": 2,
+        "revenue_share": 0
+      },
+      {
+        "country": "Czech Republic",
+        "revenue": 707.72,
+        "total_orders": 2,
+        "revenue_share": 0
+      },
+      {
+        "country": "West Indies",
+        "revenue": 536.41,
+        "total_orders": 1,
+        "revenue_share": 0
+      },
+      {
+        "country": "Saudi Arabia",
+        "revenue": 131.17,
+        "total_orders": 1,
+        "revenue_share": 0
+      },
+      {
+        "country": "Nigeria",
+        "revenue": -6.66,
+        "total_orders": 2,
+        "revenue_share": 0
+      }
+    ],
+    "products": [
+      {
+        "stock_code": "22423",
+        "description": "wonky bottom/broken",
+        "net_units_sold": 24696,
+        "revenue": 314045.02
+      },
+      {
+        "stock_code": "DOT",
+        "description": "Unknown",
+        "net_units_sold": 2917,
+        "revenue": 309844.1
+      },
+      {
+        "stock_code": "85123A",
+        "description": "wrongly marked carton 22804",
+        "net_units_sold": 94123,
+        "revenue": 248337.61
+      },
+      {
+        "stock_code": "85099B",
+        "description": "missing",
+        "net_units_sold": 94151,
+        "revenue": 178400.52
+      },
+      {
+        "stock_code": "47566",
+        "description": "Unknown",
+        "net_units_sold": 27113,
+        "revenue": 147079.73
+      },
+      {
+        "stock_code": "84879",
+        "description": "damaged",
+        "net_units_sold": 78978,
+        "revenue": 128550.42
+      },
+      {
+        "stock_code": "22086",
+        "description": "Unknown",
+        "net_units_sold": 34434,
+        "revenue": 116298.59
+      },
+      {
+        "stock_code": "POST",
+        "description": "Unknown",
+        "net_units_sold": 10011,
+        "revenue": 110430.41
+      },
+      {
+        "stock_code": "79321",
+        "description": "Unknown",
+        "net_units_sold": 15652,
+        "revenue": 79905.13
+      },
+      {
+        "stock_code": "22197",
+        "description": "Unknown",
+        "net_units_sold": 77969,
+        "revenue": 78903.62
+      },
+      {
+        "stock_code": "22386",
+        "description": "JUMBO BAG PINK WITH WHITE SPOTS",
+        "net_units_sold": 38955,
+        "revenue": 75457.64
+      },
+      {
+        "stock_code": "84347",
+        "description": "Unknown",
+        "net_units_sold": 21401,
+        "revenue": 70969.95
+      },
+      {
+        "stock_code": "20725",
+        "description": "LUNCH BAG RED SPOTTY",
+        "net_units_sold": 39386,
+        "revenue": 69722.54
+      },
+      {
+        "stock_code": "85099F",
+        "description": "Unknown",
+        "net_units_sold": 35589,
+        "revenue": 67473.53
+      },
+      {
+        "stock_code": "23084",
+        "description": "website fixed",
+        "net_units_sold": 30597,
+        "revenue": 66661.63
+      }
+    ],
+    "segments": [
+      {
+        "customer_segment": "Champions",
+        "customers": 1280,
+        "revenue": 11356250.92
+      },
+      {
+        "customer_segment": "Regular Customers",
+        "customers": 1267,
+        "revenue": 761927.39
+      },
+      {
+        "customer_segment": "Loyal Customers",
+        "customers": 1054,
+        "revenue": 2782732.82
+      },
+      {
+        "customer_segment": "Lost Customers",
+        "customers": 903,
+        "revenue": 358316.07
+      },
+      {
+        "customer_segment": "Potential Loyalists",
+        "customers": 872,
+        "revenue": 677984.73
+      },
+      {
+        "customer_segment": "At Risk",
+        "customers": 461,
+        "revenue": 445416.11
+      }
+    ]
+  }
+}
