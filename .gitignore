@@ -1,0 +1,15 @@
+.venv/
+venv/
+.env
+.env.*
+!.env.example
+__pycache__/
+*.pyc
+.streamlit/secrets.toml
+.vscode/
+data/
+models/
+reports/
+*.log
+*.db
+*.sqlite3
